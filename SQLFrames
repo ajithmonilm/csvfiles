@@ -1,0 +1,58 @@
+http://localhost:8082/src/html/repl.html
+
+const bomsdf = DataFrame.fromURL('http://localhost:8082/src/html/pivomo/csv/BOM_Structures_Across_Bills_Across_All_Orgs.csv');
+const {
+    values,
+    groupBy,
+    agg: { count },
+    where:{eq,or,not,isnull}
+  } = SQL;
+
+
+  
+
+
+ const bomsgdf = bomsdf.gdf(
+    groupBy('SEGMENT1'),
+    count('ORGANIZATION_ID_2').as('count')
+  );
+ //return bomsgdf.having(eq('min',600));
+ const resultGfd = bomsgdf.having(eq('SEGMENT1','01-HU86364'));
+ //alert("AMO"+resultGfd); 
+amo=resultGfd;
+alert(resultGfd);
+
+ return resultGfd;
+
+
+ =======================================
+ In JS Console
+ =======================================
+
+
+const { default: sfloader } = await import(
+    /* webpackIgnore: true */
+    'https://unpkg.com/@sqlframes/repl-app@latest/dist/main.mjs'
+  );
+
+const sf = await new Promise((resolve, reject) => {
+    sfloader.load(
+      'https://unpkg.com/@sqlframes/repl-app@latest/dist/index',
+      resolve
+    );
+  });
+
+
+  amo._pvtdfStats._pvtlastExecTime -6 
+  amo._pvtcFields.length  - 0
+  amo._pvtcols[0]._pvtfield._pvtname - SEGMENT1
+  lm_gdf._pvtcols[0].field._pvtlov
+  lm_gdf._pvtcols[0].field 
+  lm_gdf._pvtcols[0].field._pvtlov.getData(0) 
+
+  lm_gdf._pvtcols[0].field._pvtlov._pvtvalues[0]
+  lm_gdf._pvtcols[1]._pvtfield._pvtmaxv
+
+  amo.getColumnCount() 
+
+  https://stackoverflow.com/questions/51240409/how-to-declare-global-variables-in-react-js
